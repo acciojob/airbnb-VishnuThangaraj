@@ -57,10 +57,11 @@ public class HotelManagementService {
 
     // Book a room in the hotel
     public int bookARoom(Booking booking){
-        hotelRepository.addBooking(booking);
 
         //book the required room
         if(!hotelRepository.bookRooms(booking)) return -1;
+
+        hotelRepository.addBooking(booking);
 
         // Calculate the amount to be paid for hotel
         Hotel hotel = hotelRepository.getHotel(booking.getHotelName());
