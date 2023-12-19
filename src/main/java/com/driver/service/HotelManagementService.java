@@ -57,6 +57,7 @@ public class HotelManagementService {
 
     // Book a room in the hotel
     public int bookARoom(Booking booking){
+        if(booking == null) return -1;
 
         //book the required room
         return hotelRepository.bookRooms(booking);
