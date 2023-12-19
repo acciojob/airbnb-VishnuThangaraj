@@ -50,13 +50,18 @@ public class HotelManagementRepository {
     }
 
     // Book the rooms
-    public boolean bookRooms(Booking booking){
+    public int bookRooms(Booking booking){
         Hotel hotel = hotelHashMap.get(booking.getHotelName());
         if(hotel == null || booking.getNoOfRooms() > hotel.getAvailableRooms()){
-            return false;
+            return -1;
         }
         hotel.setAvailableRooms(hotel.getAvailableRooms()- booking.getNoOfRooms());
-        return true;
+        addBooking(booking);
+
+        int cost = hotel.getPricePerNight() * booking.getNoOfRooms();
+        booking.setAmountToBePaid(cost);
+
+        return cost;
     }
 
     // Add Bookings to the Database

@@ -59,18 +59,7 @@ public class HotelManagementService {
     public int bookARoom(Booking booking){
 
         //book the required room
-        if(!hotelRepository.bookRooms(booking)) return -1;
-
-        hotelRepository.addBooking(booking);
-
-        // Calculate the amount to be paid for hotel
-        Hotel hotel = hotelRepository.getHotel(booking.getHotelName());
-        if(hotel == null) return -1;
-
-        int cost = hotel.getPricePerNight() * booking.getNoOfRooms();
-        booking.setAmountToBePaid(cost);
-
-        return cost;
+        return hotelRepository.bookRooms(booking);
     }
 
     // Get the Number of bookings done by the user
