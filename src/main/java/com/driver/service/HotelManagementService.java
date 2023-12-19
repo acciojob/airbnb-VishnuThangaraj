@@ -65,6 +65,7 @@ public class HotelManagementService {
 
         // Calculate the amount to be paid for hotel
         Hotel hotel = hotelRepository.getHotel(booking.getHotelName());
+        if(hotel == null) return -1;
 
         int cost = hotel.getPricePerNight() * booking.getNoOfRooms();
         booking.setAmountToBePaid(cost);
