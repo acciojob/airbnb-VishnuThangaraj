@@ -52,7 +52,7 @@ public class HotelManagementRepository {
     // Book the rooms
     public boolean bookRooms(Booking booking){
         Hotel hotel = hotelHashMap.get(booking.getHotelName());
-        if(booking.getNoOfRooms() > hotel.getAvailableRooms()){
+        if(hotel == null || booking.getNoOfRooms() > hotel.getAvailableRooms()){
             return false;
         }
         hotel.setAvailableRooms(hotel.getAvailableRooms()- booking.getNoOfRooms());
