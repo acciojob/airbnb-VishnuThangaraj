@@ -67,16 +67,12 @@ public class HotelManagementRepository {
 
     // Get hotel of the given hotelName
     public Hotel getHotel(String hotelName){
-        return hotelHashMap.get(hotelName);
+        return hotelHashMap.getOrDefault(hotelName, null);
     }
 
     // Get the Number of bookings done by the user
     public int getBookings(Integer aadharCard){
-        if(!userBookingHashMap.containsKey(aadharCard) || userBookingHashMap.get(aadharCard) == null) {
-            return 0;
-        }
-        else {
-            return userBookingHashMap.get(aadharCard).size();
-        }
+        int count = (int) bookingHashMap.keySet().stream().filter(key -> bookingHashMap.get(key).getBookingAadharCard() == (aadharCard)).count();
+        return count;
     }
 }
