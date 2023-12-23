@@ -72,7 +72,7 @@ public class HotelManagementRepository {
 
     // Get the Number of bookings done by the user
     public int getBookings(Integer aadharCard){
-        if(userBookingHashMap.get(aadharCard) == null) {
+        if(!userBookingHashMap.containsKey(aadharCard) || userBookingHashMap.get(aadharCard) == null) {
             return 0;
         }
         else {
