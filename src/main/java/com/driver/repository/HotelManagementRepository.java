@@ -8,22 +8,17 @@ import org.springframework.stereotype.Repository;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
-import java.util.UUID;
 import java.util.stream.Collectors;
 
 @Repository
 public class HotelManagementRepository {
-    HashMap<String, Hotel> hotelHashMap;
-    HashMap<Integer, User> userHashMap;
-    HashMap<String, Booking> bookingHashMap;
-    HashMap<Integer, List<Booking>> userBookingHashMap;
+    HashMap<String, Hotel> hotelHashMap = new HashMap<>();
+    HashMap<Integer, User> userHashMap = new HashMap<>();
+    HashMap<String, Booking> bookingHashMap = new HashMap<>();
+    HashMap<Integer, List<Booking>> userBookingHashMap = new HashMap<>();
 
     // Constructor
     public HotelManagementRepository(){
-        hotelHashMap = new HashMap<>();
-        userHashMap = new HashMap<>();
-        bookingHashMap = new HashMap<>();
-        userBookingHashMap = new HashMap<>();
     }
 
     // Add Hotel to the Database
