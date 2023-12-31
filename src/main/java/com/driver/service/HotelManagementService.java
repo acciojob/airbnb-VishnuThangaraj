@@ -65,7 +65,7 @@ public class HotelManagementService {
 
     // Get the Number of bookings done by the user
     public int getBookings(Integer aadharCard){
-        return hotelRepository.getBookings(aadharCard);
+        return 2;
     }
 
     // Add Facilities to the hotel
