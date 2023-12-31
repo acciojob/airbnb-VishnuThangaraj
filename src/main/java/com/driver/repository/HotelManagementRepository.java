@@ -29,7 +29,7 @@ public class HotelManagementRepository {
     // Check if the hotel name exists in database
     public boolean hotelExists(Hotel hotel){
         return hotelHashMap.keySet().stream().
-                filter(key -> hotel.getHotelName().equals(key)).findFirst().isPresent();
+                anyMatch(key -> hotel.getHotelName().equals(key));
     }
 
     // Add user to the Database
@@ -51,28 +51,22 @@ public class HotelManagementRepository {
             return -1;
         }
         hotel.setAvailableRooms(hotel.getAvailableRooms()- booking.getNoOfRooms());
-        addBooking(booking);
+        //addBooking(booking);
 
         int cost = hotel.getPricePerNight() * booking.getNoOfRooms();
         booking.setAmountToBePaid(cost);
 
+        bookingHashMap.put(booking.getBookingId(), booking);
         return cost;
     }
 
     // Add Bookings to the Database
-    public void addBooking(Booking booking){
-        bookingHashMap.put(booking.getBookingId(), booking);
-        userBookingHashMap.get(booking.getBookingAadharCard()).add(booking);
-    }
 
-    // Get hotel of the given hotelName
-    public Hotel getHotel(String hotelName){
-        return hotelHashMap.getOrDefault(hotelName, null);
-    }
 
     // Get the Number of bookings done by the user
     public int getBookings(Integer aadharCard){
-        int count = (int) bookingHashMap.keySet().stream().filter(key -> bookingHashMap.get(key).getBookingAadharCard() == (aadharCard)).count();
+        int count = (int) bookingHashMap.keySet().stream().
+                filter(key -> bookingHashMap.get(key).getBookingAadharCard() == (aadharCard)).count();
         return count;
     }
 }

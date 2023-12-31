@@ -71,7 +71,15 @@ public class HotelManagementService {
     // Add Facilities to the hotel
     public Hotel addFacilities(List<Facility> newFacilities, String hotelName){
         // Get the Hotel
-        Hotel hotel = hotelRepository.getHotel(hotelName);
+        List<Hotel>hotels = hotelRepository.getAllHotels();
+
+        Hotel hotel = null;
+        for(Hotel h : hotels){
+            if(h.getHotelName().equals(hotelName)){
+                hotel = h;
+                break;
+            }
+        }
 
         for(Facility facility : newFacilities){
             if(!hotel.getFacilities().contains(facility)){
