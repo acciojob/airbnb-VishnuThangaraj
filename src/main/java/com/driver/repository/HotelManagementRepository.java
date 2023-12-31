@@ -12,13 +12,15 @@ import java.util.stream.Collectors;
 
 @Repository
 public class HotelManagementRepository {
-    HashMap<String, Hotel> hotelHashMap = new HashMap<>();
-    HashMap<Integer, User> userHashMap = new HashMap<>();
-    HashMap<String, Booking> bookingHashMap = new HashMap<>();
-    HashMap<Integer, List<Booking>> userBookingHashMap = new HashMap<>();
+    HashMap<String, Hotel> hotelHashMap ;
+    HashMap<Integer, User> userHashMap ;
+    HashMap<String, Booking> bookingHashMap ;
 
     // Constructor
     public HotelManagementRepository(){
+        hotelHashMap = new HashMap<>();
+        userHashMap = new HashMap<>();
+        bookingHashMap = new HashMap<>();
     }
 
     // Add Hotel to the Database
@@ -35,7 +37,6 @@ public class HotelManagementRepository {
     // Add user to the Database
     public void addUser(User user){
         userHashMap.put(user.getaadharCardNo(), user);
-        userBookingHashMap.put(user.getaadharCardNo(), new ArrayList<>());
     }
 
     // Return the list of Hotels
