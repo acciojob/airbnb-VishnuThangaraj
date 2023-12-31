@@ -57,6 +57,7 @@ public class HotelManagementRepository {
         booking.setAmountToBePaid(cost);
 
         bookingHashMap.put(booking.getBookingId(), booking);
+        userBookingHashMap.get(booking.getBookingAadharCard()).add(booking);
         return cost;
     }
 
@@ -65,8 +66,6 @@ public class HotelManagementRepository {
 
     // Get the Number of bookings done by the user
     public int getBookings(Integer aadharCard){
-        int count = (int) bookingHashMap.keySet().stream().
-                filter(key -> bookingHashMap.get(key).getBookingAadharCard() == (aadharCard)).count();
-        return count;
+        return userBookingHashMap.get(aadharCard).size();
     }
 }
